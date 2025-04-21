@@ -37,6 +37,7 @@ class myStringsTests {
     escapeCharacters = new String[] {"\n", "\t", "\b", "\'", "\""};
     typicalStrings = new String[] {"Writing strings is so much fun", Character.toString(0)};
 
+
   }
 
   @Test
@@ -59,4 +60,20 @@ class myStringsTests {
 
   @Test
   public void isNullOrEmptyTestQuote(){ assertEquals(false, Strings.isNullOrEmpty(escapeCharacters[4]));}
+
+  @Test
+  public void quotesAroundObjectsTestBool(){ assertEquals(true, Strings.quote(true)); }
+
+  @Test
+  public void quotesAroundObjectsTestShort(){ assertEquals(Short.MIN_VALUE, Strings.quote(Short.MIN_VALUE)); }
+
+  @Test
+  public void quotesAroundObjectsTestDoubleMin() { assertEquals(Double.MIN_VALUE, Strings.quote(Double.MIN_VALUE)); }
+
+  @Test
+  public void quotesAroundObjectsTestDoubleMax(){ assertEquals(Double.MAX_VALUE, Strings.quote(Double.MAX_VALUE)); }
+
+  @Test
+  public void quotesAroundObjectsEmptyString(){ assertEquals("''", Strings.quote("")); }
 }
+
