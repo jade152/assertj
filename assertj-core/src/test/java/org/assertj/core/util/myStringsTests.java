@@ -31,13 +31,13 @@ class myStringsTests {
 
   private static String[] escapeCharacters;
   private static String[] typicalStrings;
+  private static String[] stringsForPercentEscape;
 
   @BeforeAll
   static public void setUp(){
     escapeCharacters = new String[] {"\n", "\t", "\b", "\'", "\""};
     typicalStrings = new String[] {"Writing strings is so much fun", Character.toString(0)};
-
-
+    stringsForPercentEscape = new String[] {"This is a string", "%", "This sentence %has a percent in it", "%This %sentence %has %lots of percents %in it", "╫╦£æ₧", "%╫%╦£æ%₧", "\b%Backspaced character"};
   }
 
   @Test
@@ -75,5 +75,29 @@ class myStringsTests {
 
   @Test
   public void quotesAroundObjectsEmptyString(){ assertEquals("''", Strings.quote("")); }
+
+  @Test
+  public void escapePercentTestNull(){ assertEquals(null, Strings.escapePercent(null)); }
+
+  @Test
+  public void escapePercentTestNoPercent(){ assertEquals("This is a string", Strings.escapePercent(stringsForPercentEscape[0])); }
+
+  @Test
+  public void escapePercentTestSinglePercent(){ assertEquals("%%", Strings.escapePercent(stringsForPercentEscape[1])); }
+
+  @Test
+  public void escapePercentTestPercentInString(){ assertEquals("This sentence %%has a percent in it", Strings.escapePercent(stringsForPercentEscape[2])); }
+
+  @Test
+  public void escapePercentTestPercentsInString(){ assertEquals("%%This %%sentence %%has %%lots of percents %%in it", Strings.escapePercent(stringsForPercentEscape[3])); }
+
+  @Test
+  public void escapePercentTestSpecialString(){ assertEquals("╫╦£æ₧", Strings.escapePercent(stringsForPercentEscape[4])); }
+
+  @Test
+  public void escapePercentTestSpecialStringWithPercents(){ assertEquals("%%╫%%╦£æ%%₧", Strings.escapePercent(stringsForPercentEscape[5])); }
+
+  @Test
+  public void escapePercentTestEscapeSequenceString(){ assertEquals("\b%%Backspaced character", Strings.escapePercent(stringsForPercentEscape[6])); }
 }
 
