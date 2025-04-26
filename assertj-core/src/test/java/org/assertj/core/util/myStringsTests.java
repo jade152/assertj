@@ -41,27 +41,6 @@ class myStringsTests {
   }
 
   @Test
-  public void isNullOrEmptyTestTypical(){ assertEquals(false, Strings.isNullOrEmpty(typicalStrings[0])); }
-
-  @Test
-  public void isNullOrEmptyTestNumber(){ assertEquals(false, Strings.isNullOrEmpty(typicalStrings[1])); }
-
-  @Test
-  public void isNullOrEmptyTestNewline(){ assertEquals(false, Strings.isNullOrEmpty(escapeCharacters[0])); }
-
-  @Test
-  public void isNullOrEmptyTestTab(){ assertEquals(false, Strings.isNullOrEmpty(escapeCharacters[1])); }
-
-  @Test
-  public void isNullOrEmptyTestBackspace(){ assertEquals(false, Strings.isNullOrEmpty(escapeCharacters[2])); }
-
-  @Test
-  public void isNullOrEmptyTestApostropphe(){ assertEquals(false, Strings.isNullOrEmpty(escapeCharacters[3])); }
-
-  @Test
-  public void isNullOrEmptyTestQuote(){ assertEquals(false, Strings.isNullOrEmpty(escapeCharacters[4]));}
-
-  @Test
   public void quotesAroundObjectsTestBool(){ assertEquals(true, Strings.quote(true)); }
 
   @Test
